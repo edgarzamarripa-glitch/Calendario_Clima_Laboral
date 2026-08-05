@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+
+    <script>
+    (function() {
+        document.addEventListener('contextmenu', function(e) {
+            e.preventDefault();
+            return false;
+        });
+      
+       document.addEventListener('keydown', function(e) {
+            const key = e.key.toLowerCase();
+            if ((e.ctrlKey && (key === 'u' || key === 's' || key === 'c' || key === 'i' || key === 'j')) ||
+                (e.ctrlKey && e.shiftKey && (key === 'i' || key === 'j' || key === 'c')) ||
+                e.key === 'F12') {
+                e.preventDefault();
+                return false;
+            }
+        });
+        
+        let devtoolsTriggered = false;
+        setInterval(function() {
+            if (devtoolsTriggered) return;
+            const before = new Date();
+            debugger; 
+            const after = new Date();
+            if (after - before > 100) { 
+                devtoolsTriggered = true;
+                document.body.innerHTML = '<div style="text-align:center; padding:50px; font-family:sans-serif;"><h1 style="color:#042C53;">⚠️ Acceso no autorizado</h1><p>El uso de herramientas de desarrollo no está permitido en este recurso institucional.</p><p style="font-size:14px; margin-top:30px;">🔒 COBAED · Dirección Académica</p></div>';
+            }
+        }, 2000);
+        
+        const style = document.createElement('style');
+        style.textContent = `body { user-select: none; -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; }`;
+        document.head.appendChild(style);
+    })();
+    </script>
+
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Calendario · Evaluación del Clima Laboral · 2026-B</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Work+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --plumbago:#5C7A94;
+    --negro:#1B1B1B;
+    --blanco:#FFFFFF;
+    --gris:#7C7C7C;
+    --beige:#E6DCC8;
+    --tierra:#7A5A3A;
+    --azul-suave:#AFC7DA;
+    --verde-suave:#A9C5A0;
+    --crema:#F7F2E7;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{
+    font-family:'Work Sans',sans-serif;
+    background:var(--crema);
+    color:var(--negro);
+    line-height:1.5;
+    -webkit-font-smoothing:antialiased;
+  }
+  ::selection{background:var(--verde-suave);color:var(--negro);}
+
+  /* ---- top bar ---- */
+  .topbar{
+    background:var(--plumbago);
+    color:var(--blanco);
+    padding:14px 6vw;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    letter-spacing:.04em;
+  }
+  .topbar .brand{
+    display:flex;align-items:center;gap:10px;
+    font-family:'JetBrains Mono',monospace;
+    font-size:12.5px;
+    text-transform:uppercase;
+  }
+  .brand-mark{
+    width:9px;height:9px;background:var(--verde-suave);
+    border-radius:50%;
+    flex-shrink:0;
+  }
+  .topbar .tag{
+    font-family:'JetBrains Mono',monospace;
+    font-size:11.5px;
+    color:var(--azul-suave);
+    text-transform:uppercase;
+    letter-spacing:.08em;
+  }
+
+  /* ---- hero ---- */
+  .hero{
+    padding:72px 6vw 56px;
+    border-bottom:1px solid rgba(27,27,27,.08);
+    position:relative;
+    overflow:hidden;
+  }
+  .hero .eyebrow{
+    font-family:'JetBrains Mono',monospace;
+    font-size:12px;
+    text-transform:uppercase;
+    letter-spacing:.12em;
+    color:var(--tierra);
+    margin-bottom:18px;
+    display:block;
+  }
+  .hero h1{
+    font-family:'Fraunces',serif;
+    font-weight:500;
+    font-size:clamp(34px,4.6vw,58px);
+    line-height:1.06;
+    max-width:14ch;
+    color:var(--negro);
+  }
+  .hero h1 em{
+    font-style:italic;
+    color:var(--plumbago);
+  }
+  .hero p.sub{
+    margin-top:22px;
+    max-width:52ch;
+    font-size:16.5px;
+    color:var(--negro);
+    opacity:.72;
+  }
+  .hero-stats{
+    margin-top:44px;
+    display:grid;
+    grid-template-columns:repeat(4,minmax(0,1fr));
+    gap:1px;
+    background:rgba(27,27,27,.1);
+    border:1px solid rgba(27,27,27,.1);
+    max-width:760px;
+  }
+  .stat{
+    background:var(--crema);
+    padding:20px 22px;
+  }
+  .stat .num{
+    font-family:'Fraunces',serif;
+    font-weight:500;
+    font-size:30px;
+    color:var(--plumbago);
+  }
+  .stat .lbl{
+    margin-top:6px;
+    font-size:11.5px;
+    text-transform:uppercase;
+    letter-spacing:.06em;
+    color:var(--gris);
+  }
+
+  /* ---- progress ---- */
+  .progress-wrap{
+    padding:34px 6vw 0;
+    max-width:1100px;
+  }
+  .progress-head{
+    display:flex;justify-content:space-between;align-items:baseline;
+    margin-bottom:10px;
+    font-size:13px;
+    color:var(--gris);
+  }
+  .progress-head strong{
+    color:var(--negro);
+    font-weight:500;
+    font-family:'JetBrains Mono',monospace;
+    font-size:12.5px;
+  }
+  .progress-track{
+    height:6px;
+    background:var(--beige);
+    border-radius:0;
+    overflow:hidden;
+    position:relative;
+  }
+  .progress-fill{
+    height:100%;
+    background:var(--verde-suave);
+    width:0%;
+    transition:width 1s ease;
+  }
+
+  /* ---- filters ---- */
+  .filters{
+    padding:40px 6vw 0;
+    display:flex;
+    gap:10px;
+    flex-wrap:wrap;
+  }
+  .filter-btn{
+    font-family:'Work Sans',sans-serif;
+    font-size:13px;
+    font-weight:500;
+    padding:9px 18px;
+    border:1px solid rgba(27,27,27,.18);
+    background:transparent;
+    color:var(--negro);
+    cursor:pointer;
+    transition:all .18s ease;
+    letter-spacing:.01em;
+  }
+  .filter-btn:hover{border-color:var(--plumbago);color:var(--plumbago);}
+  .filter-btn.active{
+    background:var(--negro);
+    border-color:var(--negro);
+    color:var(--blanco);
+  }
+
+  /* ---- timeline ---- */
+  .timeline{
+    padding:48px 6vw 90px;
+    max-width:1100px;
+    position:relative;
+  }
+  .timeline::before{
+    content:"";
+    position:absolute;
+    left:calc(6vw + 27px);
+    top:48px;
+    bottom:90px;
+    width:1px;
+    background:rgba(27,27,27,.14);
+  }
+  .module{
+    position:relative;
+    padding-left:70px;
+    padding-bottom:38px;
+    transition:opacity .25s ease, max-height .25s ease;
+  }
+  .module:last-child{padding-bottom:0;}
+  .module.hidden{display:none;}
+  .module-dot{
+    position:absolute;
+    left:20px;
+    top:6px;
+    width:15px;height:15px;
+    border-radius:50%;
+    background:var(--crema);
+    border:2px solid var(--gris);
+    z-index:2;
+  }
+  .module[data-status="completado"] .module-dot{border-color:var(--gris);background:var(--gris);}
+  .module[data-status="en-curso"] .module-dot{border-color:var(--verde-suave);background:var(--verde-suave);}
+  .module[data-status="proximo"] .module-dot{border-color:var(--plumbago);background:var(--crema);}
+
+  .module-card{
+    background:var(--blanco);
+    border:1px solid rgba(27,27,27,.1);
+    border-left:3px solid var(--beige);
+    padding:22px 26px;
+    transition:border-color .2s ease, transform .2s ease;
+  }
+  .module[data-status="en-curso"] .module-card{border-left-color:var(--verde-suave);}
+  .module[data-status="completado"] .module-card{border-left-color:var(--gris);}
+  .module[data-status="proximo"] .module-card{border-left-color:var(--azul-suave);}
+  .module-card:hover{transform:translateX(3px);border-color:rgba(27,27,27,.22);}
+
+  .module-top{
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-start;
+    gap:16px;
+    flex-wrap:wrap;
+  }
+  .module-index{
+    font-family:'JetBrains Mono',monospace;
+    font-size:11.5px;
+    color:var(--tierra);
+    text-transform:uppercase;
+    letter-spacing:.08em;
+    margin-bottom:6px;
+    display:block;
+  }
+  .module-title{
+    font-family:'Fraunces',serif;
+    font-weight:500;
+    font-size:19.5px;
+    color:var(--negro);
+    max-width:46ch;
+  }
+  .status-badge{
+    font-family:'JetBrains Mono',monospace;
+    font-size:10.5px;
+    text-transform:uppercase;
+    letter-spacing:.06em;
+    padding:5px 11px;
+    white-space:nowrap;
+    flex-shrink:0;
+  }
+  .module[data-status="completado"] .status-badge{background:var(--beige);color:var(--negro);}
+  .module[data-status="en-curso"] .status-badge{background:var(--verde-suave);color:#264227;}
+  .module[data-status="proximo"] .status-badge{background:var(--azul-suave);color:#1f3a52;}
+
+  .module-meta{
+    display:flex;
+    gap:26px;
+    margin-top:16px;
+    flex-wrap:wrap;
+    font-size:13px;
+    color:var(--gris);
+  }
+  .module-meta span{
+    font-family:'JetBrains Mono',monospace;
+    font-size:12px;
+  }
+  .module-meta b{
+    color:var(--negro);
+    font-weight:500;
+  }
+  .meta-item{display:flex;align-items:center;gap:7px;}
+  .dot-sep{width:4px;height:4px;background:var(--tierra);border-radius:50%;flex-shrink:0;}
+
+  /* ---- footer ---- */
+  .footer{
+    padding:26px 6vw 34px;
+    border-top:1px solid rgba(27,27,27,.1);
+    display:flex;
+    justify-content:space-between;
+    flex-wrap:wrap;
+    gap:10px;
+    font-size:12px;
+    color:var(--gris);
+    font-family:'JetBrains Mono',monospace;
+  }
+
+  @media(max-width:720px){
+    .hero-stats{grid-template-columns:repeat(2,1fr);}
+    .timeline::before{left:calc(6vw + 20px);}
+    .module{padding-left:56px;}
+    .module-dot{left:14px;}
+  }
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="brand"><span class="brand-mark"></span>UJED · Planeación Académica del Semestre 2026-B</div>
+  <div class="tag">Semestre 2026-B</div>
+</div>
+
+<section class="hero">
+  <span class="eyebrow">Calendario de sesiones</span>
+  <h1>Evaluación del <em>clima laboral</em></h1>
+  <p class="sub">Distribución de módulos del taller, del 10 de agosto al 29 de noviembre de 2026. Ocho unidades secuenciales, cada una con su ventana de aplicación y número de sesiones.</p>
+
+  <div class="hero-stats">
+    <div class="stat"><div class="num">8</div><div class="lbl">Módulos</div></div>
+    <div class="stat"><div class="num">98</div><div class="lbl">Sesiones totales</div></div>
+    <div class="stat"><div class="num">16</div><div class="lbl">Semanas</div></div>
+    <div class="stat"><div class="num">1</div><div class="lbl">Actividad de campo</div></div>
+  </div>
+</section>
+
+<div class="progress-wrap">
+  <div class="progress-head">
+    <span id="progress-label">Calculando avance del programa…</span>
+    <strong id="progress-pct">0%</strong>
+  </div>
+  <div class="progress-track"><div class="progress-fill" id="progress-fill"></div></div>
+</div>
+
+<div class="filters">
+  <button class="filter-btn active" data-filter="todos">Todos</button>
+  <button class="filter-btn" data-filter="completado">Completados</button>
+  <button class="filter-btn" data-filter="en-curso">En curso</button>
+  <button class="filter-btn" data-filter="proximo">Próximos</button>
+</div>
+
+<div class="timeline" id="timeline"></div>
+
+<div class="footer">
+  <span>Consultoría de Procesos · Semestre 2026B</span>
+  <span>Actualizado automáticamente según la fecha de consulta</span>
+</div>
+
+<script>
+const modulos = [
+  {n:1, titulo:'Introducción', inicio:'2026-08-10', fin:'2026-08-30', sesiones:20},
+  {n:2, titulo:'Herramientas para desarrollar la entrega de la actividad "Estrés"', inicio:'2026-08-24', fin:'2026-09-06', sesiones:13},
+  {n:3, titulo:'Utilización efectiva del feedback', inicio:'2026-09-07', fin:'2026-09-20', sesiones:13},
+  {n:4, titulo:'Pensar estratégicamente', inicio:'2026-09-21', fin:'2026-10-04', sesiones:13},
+  {n:5, titulo:'Consecuentes del clima organizacional', inicio:'2026-10-05', fin:'2026-10-18', sesiones:null, tipo:'Actividad de campo'},
+  {n:6, titulo:'Trabajo en campo', inicio:'2026-10-19', fin:'2026-11-01', sesiones:13},
+  {n:7, titulo:'Integración de conocimientos', inicio:'2026-11-02', fin:'2026-11-15', sesiones:13},
+  {n:8, titulo:'Integración de conocimientos', inicio:'2026-11-16', fin:'2026-11-29', sesiones:13},
+];
+
+const meses = ['ene','feb','mar','abr','may','jun','jul','ago','sep','oct','nov','dic'];
+function fmt(iso){
+  const d = new Date(iso + 'T00:00:00');
+  return `${d.getDate()} ${meses[d.getMonth()]}`;
+}
+function rango(inicio, fin){
+  const di = new Date(inicio + 'T00:00:00');
+  const df = new Date(fin + 'T00:00:00');
+  if(di.getMonth() === df.getMonth()){
+    return `${di.getDate()}–${df.getDate()} ${meses[di.getMonth()]}`;
+  }
+  return `${fmt(inicio)} – ${fmt(fin)}`;
+}
+function estado(inicio, fin, hoy){
+  const di = new Date(inicio + 'T00:00:00');
+  const df = new Date(fin + 'T23:59:59');
+  if(hoy < di) return 'proximo';
+  if(hoy > df) return 'completado';
+  return 'en-curso';
+}
+function diasEntre(a,b){ return Math.round((b-a)/86400000); }
+
+const hoy = new Date();
+const timeline = document.getElementById('timeline');
+
+modulos.forEach(m=>{
+  const st = estado(m.inicio, m.fin, hoy);
+  const div = document.createElement('div');
+  div.className = 'module';
+  div.dataset.status = st;
+  const etiqueta = st === 'completado' ? 'Completado' : st === 'en-curso' ? 'En curso' : 'Próximo';
+  const sesionesTxt = m.sesiones !== null
+    ? `<span class="meta-item"><b>${m.sesiones}</b> sesiones</span>`
+    : `<span class="meta-item"><b>${m.tipo}</b></span>`;
+  div.innerHTML = `
+    <div class="module-dot"></div>
+    <div class="module-card">
+      <div class="module-top">
+        <div>
+          <span class="module-index">Unidad ${String(m.n).padStart(2,'0')}</span>
+          <div class="module-title">${m.titulo}</div>
+        </div>
+        <span class="status-badge">${etiqueta}</span>
+      </div>
+      <div class="module-meta">
+        <span class="meta-item">${rango(m.inicio, m.fin)}, 2026</span>
+        <span class="dot-sep"></span>
+        ${sesionesTxt}
+      </div>
+    </div>
+  `;
+  timeline.appendChild(div);
+});
+
+document.querySelectorAll('.filter-btn').forEach(btn=>{
+  btn.addEventListener('click', ()=>{
+    document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+    const f = btn.dataset.filter;
+    document.querySelectorAll('.module').forEach(mod=>{
+      mod.classList.toggle('hidden', f !== 'todos' && mod.dataset.status !== f);
+    });
+  });
+});
+
+const progStart = new Date('2026-08-10T00:00:00');
+const progEnd = new Date('2026-11-29T23:59:59');
+const total = diasEntre(progStart, progEnd);
+const transcurrido = Math.min(Math.max(diasEntre(progStart, hoy), 0), total);
+const pct = Math.round((transcurrido/total)*100);
+document.getElementById('progress-fill').style.width = (hoy < progStart ? 0 : hoy > progEnd ? 100 : pct) + '%';
+document.getElementById('progress-pct').textContent = (hoy < progStart ? 0 : hoy > progEnd ? 100 : pct) + '%';
+document.getElementById('progress-label').textContent =
+  hoy < progStart ? 'El programa aún no inicia' :
+  hoy > progEnd ? 'Programa finalizado' :
+  `Día ${transcurrido} de ${total} del programa`;
+</script>
+
+</body>
+</html>
