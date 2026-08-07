@@ -2,7 +2,8 @@
 <html lang="es">
 <head>
 
-    <script>
+
+<script>
     (function() {
         document.addEventListener('contextmenu', function(e) {
             e.preventDefault();
@@ -38,6 +39,7 @@
     </script>
 
 
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Calendario · Evaluación del Clima Laboral · 2026-B</title>
@@ -66,7 +68,6 @@
   }
   ::selection{background:var(--verde-suave);color:var(--negro);}
 
-  /* ---- top bar ---- */
   .topbar{
     background:var(--plumbago);
     color:var(--blanco);
@@ -95,7 +96,6 @@
     letter-spacing:.08em;
   }
 
-  /* ---- hero ---- */
   .hero{
     padding:72px 6vw 56px;
     border-bottom:1px solid rgba(27,27,27,.08);
@@ -157,7 +157,6 @@
     color:var(--gris);
   }
 
-  /* ---- progress ---- */
   .progress-wrap{
     padding:34px 6vw 0;
     max-width:1100px;
@@ -177,7 +176,6 @@
   .progress-track{
     height:6px;
     background:var(--beige);
-    border-radius:0;
     overflow:hidden;
     position:relative;
   }
@@ -188,7 +186,6 @@
     transition:width 1s ease;
   }
 
-  /* ---- filters ---- */
   .filters{
     padding:40px 6vw 0;
     display:flex;
@@ -214,7 +211,6 @@
     color:var(--blanco);
   }
 
-  /* ---- timeline ---- */
   .timeline{
     padding:48px 6vw 90px;
     max-width:1100px;
@@ -233,7 +229,6 @@
     position:relative;
     padding-left:70px;
     padding-bottom:38px;
-    transition:opacity .25s ease, max-height .25s ease;
   }
   .module:last-child{padding-bottom:0;}
   .module.hidden{display:none;}
@@ -256,12 +251,12 @@
     border:1px solid rgba(27,27,27,.1);
     border-left:3px solid var(--beige);
     padding:22px 26px;
-    transition:border-color .2s ease, transform .2s ease;
+    transition:border-color .2s ease;
   }
   .module[data-status="en-curso"] .module-card{border-left-color:var(--verde-suave);}
   .module[data-status="completado"] .module-card{border-left-color:var(--gris);}
   .module[data-status="proximo"] .module-card{border-left-color:var(--azul-suave);}
-  .module-card:hover{transform:translateX(3px);border-color:rgba(27,27,27,.22);}
+  .module-card:hover{border-color:rgba(27,27,27,.22);}
 
   .module-top{
     display:flex;
@@ -269,6 +264,7 @@
     align-items:flex-start;
     gap:16px;
     flex-wrap:wrap;
+    cursor:pointer;
   }
   .module-index{
     font-family:'JetBrains Mono',monospace;
@@ -318,7 +314,71 @@
   .meta-item{display:flex;align-items:center;gap:7px;}
   .dot-sep{width:4px;height:4px;background:var(--tierra);border-radius:50%;flex-shrink:0;}
 
-  /* ---- footer ---- */
+  .toggle-hint{
+    margin-top:14px;
+    font-family:'JetBrains Mono',monospace;
+    font-size:11px;
+    text-transform:uppercase;
+    letter-spacing:.06em;
+    color:var(--plumbago);
+    display:flex;
+    align-items:center;
+    gap:6px;
+  }
+  .toggle-hint .arrow{
+    display:inline-block;
+    transition:transform .2s ease;
+  }
+  .module.open .toggle-hint .arrow{transform:rotate(90deg);}
+
+  .objetivo-panel{
+    max-height:0;
+    overflow:hidden;
+    transition:max-height .3s ease;
+  }
+  .module.open .objetivo-panel{max-height:900px;}
+  .objetivo-inner{
+    margin-top:18px;
+    padding-top:18px;
+    border-top:1px solid rgba(27,27,27,.1);
+  }
+  .objetivo-label{
+    font-family:'JetBrains Mono',monospace;
+    font-size:11px;
+    text-transform:uppercase;
+    letter-spacing:.08em;
+    color:var(--tierra);
+    margin-bottom:10px;
+    display:block;
+  }
+  .objetivo-inner ul{
+    list-style:none;
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+  }
+  .objetivo-inner li{
+    font-size:14.5px;
+    color:var(--negro);
+    opacity:.85;
+    padding-left:16px;
+    position:relative;
+  }
+  .objetivo-inner li::before{
+    content:"";
+    position:absolute;
+    left:0;
+    top:8px;
+    width:5px;height:5px;
+    background:var(--verde-suave);
+    border-radius:50%;
+  }
+  .objetivo-inner p{
+    font-size:14.5px;
+    color:var(--negro);
+    opacity:.85;
+  }
+
   .footer{
     padding:26px 6vw 34px;
     border-top:1px solid rgba(27,27,27,.1);
@@ -342,14 +402,14 @@
 <body>
 
 <div class="topbar">
-  <div class="brand"><span class="brand-mark"></span>UJED · Planeación Académica del Semestre 2026-B</div>
+  <div class="brand"><span class="brand-mark"></span>UJED ·  Planeación Académica</div>
   <div class="tag">Semestre 2026-B</div>
 </div>
 
 <section class="hero">
   <span class="eyebrow">Calendario de sesiones</span>
   <h1>Evaluación del <em>clima laboral</em></h1>
-  <p class="sub">Distribución de módulos del taller, del 10 de agosto al 29 de noviembre de 2026. Ocho unidades secuenciales, cada una con su ventana de aplicación y número de sesiones.</p>
+  <p class="sub">Distribución de módulos del taller, del 10 de agosto al 29 de noviembre de 2026. Ocho unidades secuenciales, cada una con su ventana de aplicación, número de sesiones y objetivo de aprendizaje.</p>
 
   <div class="hero-stats">
     <div class="stat"><div class="num">8</div><div class="lbl">Módulos</div></div>
@@ -377,20 +437,41 @@
 <div class="timeline" id="timeline"></div>
 
 <div class="footer">
-  <span>Consultoría de Procesos · Semestre 2026B</span>
-  <span>Actualizado automáticamente según la fecha de consulta</span>
+  <span>Consultoría de Procesos ·  Planeación Académica</span>
+  <span>Actualizado automáticamente según la fecha de consulta · Clic en cada unidad para ver su objetivo</span>
 </div>
 
 <script>
 const modulos = [
-  {n:1, titulo:'Introducción', inicio:'2026-08-10', fin:'2026-08-30', sesiones:20},
-  {n:2, titulo:'Herramientas para desarrollar la entrega de la actividad "Estrés"', inicio:'2026-08-24', fin:'2026-09-06', sesiones:13},
-  {n:3, titulo:'Utilización efectiva del feedback', inicio:'2026-09-07', fin:'2026-09-20', sesiones:13},
-  {n:4, titulo:'Pensar estratégicamente', inicio:'2026-09-21', fin:'2026-10-04', sesiones:13},
-  {n:5, titulo:'Consecuentes del clima organizacional', inicio:'2026-10-05', fin:'2026-10-18', sesiones:null, tipo:'Actividad de campo'},
-  {n:6, titulo:'Trabajo en campo', inicio:'2026-10-19', fin:'2026-11-01', sesiones:13},
-  {n:7, titulo:'Integración de conocimientos', inicio:'2026-11-02', fin:'2026-11-15', sesiones:13},
-  {n:8, titulo:'Integración de conocimientos', inicio:'2026-11-16', fin:'2026-11-29', sesiones:13},
+  {n:1, titulo:'Introducción', inicio:'2026-08-10', fin:'2026-08-30', sesiones:20, objetivo:[
+    'Compartir con el grupo intereses, necesidades e inquietudes que permitan interactuar entre compañeros y maestro.',
+    'Identificar conceptos básicos del clima laboral y su importancia para el funcionamiento de una organización.',
+    'Contar con un espacio de intercambio y dudas del presente módulo, así como interacciones diversas entre facilitador y estudiantes.',
+    'Analizar cuatro teorías del aprendizaje con la finalidad de realizar una autoevaluación en dos vertientes: personal y laboral.'
+  ]},
+  {n:2, titulo:'Herramientas para desarrollar la entrega de la actividad "Estrés"', inicio:'2026-08-24', fin:'2026-09-06', sesiones:13, objetivo:[
+    'Desarrollar habilidades para la mejora y manejo del estrés en una organización a partir del planteamiento de un caso.',
+    'Realizar una coevaluación sobre el tema de justicia social, trabajo y factores psicosociales con la finalidad de conocer diferentes puntos de vista desde diversas perspectivas.'
+  ]},
+  {n:3, titulo:'Utilización efectiva del feedback', inicio:'2026-09-07', fin:'2026-09-20', sesiones:13, objetivo:[
+    'Conocer, mediante el estudio del documento "Cómo dar feedback efectivo", los elementos que fomentan y dan sentido a un feedback efectivo, desarrollando habilidades para su implementación práctica en una organización.'
+  ]},
+  {n:4, titulo:'Pensar estratégicamente', inicio:'2026-09-21', fin:'2026-10-04', sesiones:13, objetivo:[
+    'Aplicar los principios del pensamiento estratégico a un caso real, diseñando una propuesta concreta que impulse el éxito organizacional mediante la identificación de oportunidades, análisis de información, priorización de acciones y evaluación de trade-offs.'
+  ]},
+  {n:5, titulo:'Consecuentes del clima organizacional', inicio:'2026-10-05', fin:'2026-10-18', sesiones:null, tipo:'Actividad de campo', objetivo:[
+    'Que el estudiante analice y comprenda los conceptos, métodos de medición e impactos del clima organizacional en la salud y el desempeño de los trabajadores, basándose en hallazgos de estudios realizados en población mexicana, para aplicar este conocimiento en futuros diagnósticos y propuestas de intervención.'
+  ]},
+  {n:6, titulo:'Trabajo en campo', inicio:'2026-10-19', fin:'2026-11-01', sesiones:13, objetivo:[
+    'El participante será capaz de diseñar una propuesta de intervención basada en el ciclo PHVA (Planificar, Hacer, Verificar, Actuar) para mejorar un proceso específico de su práctica educativa o gestión institucional, fundamentándola en un diagnóstico real y en los principios de la mejora continua.'
+  ]},
+  {n:7, titulo:'Integración de conocimientos', inicio:'2026-11-02', fin:'2026-11-15', sesiones:13, objetivo:[
+    'Planificación y ejecución de una negociación efectiva: aplicación práctica basada en un estudio de caso.',
+    'Objetivo general: al finalizar este proyecto, el estudiante será capaz de diseñar, analizar y ejecutar una estrategia de negociación integral, aplicando los conceptos, técnicas y herramientas estudiadas en el documento "Negociación", con base en un caso real o simulado.'
+  ]},
+  {n:8, titulo:'Integración de conocimientos', inicio:'2026-11-16', fin:'2026-11-29', sesiones:13, objetivo:[
+    'Reconocer los conocimientos adquiridos en las diversas actividades desarrolladas para identificar cuáles son las áreas de oportunidad como profesional, con el fin de enfocarse en el desarrollo de estas.'
+  ]},
 ];
 
 const meses = ['ene','feb','mar','abr','may','jun','jul','ago','sep','oct','nov','dic'];
@@ -427,6 +508,9 @@ modulos.forEach(m=>{
   const sesionesTxt = m.sesiones !== null
     ? `<span class="meta-item"><b>${m.sesiones}</b> sesiones</span>`
     : `<span class="meta-item"><b>${m.tipo}</b></span>`;
+  const objetivoItems = m.objetivo.length > 1
+    ? `<ul>${m.objetivo.map(o=>`<li>${o}</li>`).join('')}</ul>`
+    : `<p>${m.objetivo[0]}</p>`;
   div.innerHTML = `
     <div class="module-dot"></div>
     <div class="module-card">
@@ -442,9 +526,25 @@ modulos.forEach(m=>{
         <span class="dot-sep"></span>
         ${sesionesTxt}
       </div>
+      <div class="toggle-hint"><span class="arrow">›</span>Ver objetivo de la unidad</div>
+      <div class="objetivo-panel">
+        <div class="objetivo-inner">
+          <span class="objetivo-label">Objetivo de la unidad</span>
+          ${objetivoItems}
+        </div>
+      </div>
     </div>
   `;
   timeline.appendChild(div);
+});
+
+document.querySelectorAll('.module').forEach(mod=>{
+  mod.querySelector('.module-top').addEventListener('click', ()=>{
+    mod.classList.toggle('open');
+  });
+  mod.querySelector('.toggle-hint').addEventListener('click', ()=>{
+    mod.classList.toggle('open');
+  });
 });
 
 document.querySelectorAll('.filter-btn').forEach(btn=>{
